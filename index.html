@@ -2,19 +2,58 @@
 <head>
 <title>cucc</title>
 <style>
-  body{
-    background-color:red;
-    
-  }
+.container {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+button {
+  width: 100px;
+}
+
+div.parent {
+  border: 1px solid black;
+  padding: 5px;
+  width: 100px;
+  height: 100px;
+}
+
+div.child {
+  border: 1px solid red;
+  margin: 10px;
+  padding: 5px;
+  width: 80px;
+  height: 60px;
+  box-sizing: border-box;
+}
 </style>
 </head>
 <body>
-  <h2>Csak GitHub-os lapok!</h2>
-<h1>Ide kérem az elérhetőségeket</h1>
-  <ul>
-    <li>
-      Név és link kerüljön ide.
-    </li>
-  </ul>
+  <div class="container">
+  <div class="parent">Szülő</div>
+  <button id="add-child" type="button">Add gyermek</button>
+  <button id="remove-child" type="button">Távolíts el gyermeket</button>
+</div>
 </body>
 </html>
+
+<script>
+  const parent = document.body.querySelector(".parent");
+const addChild = document.body.querySelector("#add-child");
+const removeChild = document.body.querySelector("#remove-child");
+
+addChild.addEventListener("click", () => {
+  const child = document.createElement("div");
+  child.className = "child";
+  child.textContent = "Gyermek";
+  parent.appendChild(child);
+});
+
+removeChild.addEventListener("click", () => {
+  const child = parent.querySelector(".child");
+  if (child) {
+    parent.removeChild(child);
+  }
+});
+</script>
